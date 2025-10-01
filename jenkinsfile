@@ -57,9 +57,9 @@ pipeline{
         stage ("Tag & Push to DockerHub") {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'docker') {
+                    withDockerRegistry(credentialsId: 'Docker') {
                         sh "docker tag zomato dewdropsmk/zomato:$BUILD_NUMBER "
-                        sh "docker push dewdropsmk/zomato:$BUILD_NUMBER "
+                        sh "docker push de  wdropsmk/zomato:$BUILD_NUMBER "
                     }
                 }
             }
@@ -67,7 +67,7 @@ pipeline{
         stage('Docker Scout Image') {
             steps {
                 script{
-                   withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
+                   withDockerRegistry(credentialsId: 'Docker', toolName: 'Docker'){
                        sh 'docker-scout quickview dewdropsmk/zomato:$BUILD_NUMBER'
                        sh 'docker-scout cves dewdropsmk/zomato:$BUILD_NUMBER'
                        sh 'docker-scout recommendations dewdropsmk/zomato:$BUILD_NUMBER'

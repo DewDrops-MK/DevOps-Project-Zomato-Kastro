@@ -59,7 +59,7 @@ pipeline{
                 script {
                     withDockerRegistry(credentialsId: 'Docker') {
                         sh "docker tag zomato dewdropsmk/zomato:$BUILD_NUMBER "
-                        sh "docker push de  wdropsmk/zomato:$BUILD_NUMBER "
+                        sh "docker push dewdropsmk/zomato:$BUILD_NUMBER "
                     }
                 }
             }

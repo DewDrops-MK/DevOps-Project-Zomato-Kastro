@@ -69,17 +69,17 @@ pipeline{
                 }
             }
         }
-        stage('Docker Scout Image') {
-            steps {
-                script{
-                   withDockerRegistry(credentialsId: 'Docker', toolName: 'Docker'){
-                       sh 'docker-scout quickview dewdropsmk/zomato:$BUILD_NUMBER'
-                       sh 'docker-scout cves dewdropsmk/zomato:$BUILD_NUMBER'
-                       sh 'docker-scout recommendations dewdropsmk/zomato:$BUILD_NUMBER'
-                   }
-                }
-            }
-        }
+        // stage('Docker Scout Image') {
+        //     steps {
+        //         script{
+        //            withDockerRegistry(credentialsId: 'Docker', toolName: 'Docker'){
+        //                sh 'docker-scout quickview dewdropsmk/zomato:$BUILD_NUMBER'
+        //                sh 'docker-scout cves dewdropsmk/zomato:$BUILD_NUMBER'
+        //                sh 'docker-scout recommendations dewdropsmk/zomato:$BUILD_NUMBER'
+        //            }
+        //         }
+        //     }
+        // }
         stage ("Deploy to Container") {
             steps {
                 sh 'docker run -d --name zomato -p 3000:3000 dewdropsmk/zomato:$BUILD_NUMBER'
